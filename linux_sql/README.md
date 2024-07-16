@@ -4,33 +4,34 @@ The Linux Cluster Monitoring Agent is a tool that allows users to monitor nodes 
 
 ## Quick Start
 
-#### Start a PostgreSQL instance using psql_docker.sh
+##### Start a PostgreSQL instance using psql_docker.sh
+
 ```bash
 ./linux_sql/scripts/psql_docker.sh start db_password
 ```
-#### Initialize the database and tables
+##### Initialize the database and tables
 ```bash
 psql -h psql_host -U psql_user -w -f linux_sql/sql/ddl.sql
 ```
-#### Insert node hardware specifications into the host_info table
+##### Insert node hardware specifications into the host_info table
 ```bash
 ./linux_sql/scripts/host_info.sh psql_host psql_port db_name psql_user psql_password
 ```
-#### Insert a snapshot of the node's resource usage into the host_usage table
+##### Insert a snapshot of the node's resource usage into the host_usage table
 ```bash
 ./linux_sql/scripts/host_usage.sh psql_host psql_port db_name psql_user psql_password
 ```
-#### Set up a crontab job to run host_usage.sh periodically
+##### Set up a crontab job to run host_usage.sh periodically
 ```bash
 crontab -e
 ```
-#### Add the following line to run every minute
+##### Add the following line to run every minute
 ```bash
 * * * * * bash [path]/host_usage.sh psql_host psql_port db_name psql_user psql_password > /tmp/host_usage.log
 ```
 ## Implementation
 
-## Architecture
+#### Architecture
 
 The architecture of the Linux Cluster Administration (LCA) monitoring system consists of the following components:
 
@@ -38,9 +39,7 @@ The architecture of the Linux Cluster Administration (LCA) monitoring system con
 - **Monitoring Agent**: A single monitoring agent icon connected to the node to indicate that the agent is installed on the server to collect hardware specification data and resource usage data.
 - **PostgreSQL Database**: Represented as a database icon labeled `PostgreSQL DB`.
 
-![Architecture Diagram](assets/architecture_diagram.png)
-
-### Scripts
+#### Scripts
 
 - **psql_docker.sh**: Starts and stops the PostgreSQL Docker container.
 
@@ -75,9 +74,9 @@ The architecture of the Linux Cluster Administration (LCA) monitoring system con
 
 - **queries.sql**: Contains SQL queries to analyze and manage the cluster's data.
 
-### Database Modeling
+#### Database Modeling
 
-#### `host_info` Table
+###### `host_info` Table
 
 | Column           | Type      | Description                            |
 |------------------|-----------|----------------------------------------|
@@ -91,7 +90,7 @@ The architecture of the Linux Cluster Administration (LCA) monitoring system con
 | total_mem        | INT4      | Total memory in KB                     |
 | timestamp        | TIMESTAMP | UTC timestamp of data collection       |
 
-#### `host_usage` Table
+##### `host_usage` Table
 
 | Column          | Type      | Description                            |
 |-----------------|-----------|----------------------------------------|
