@@ -1,0 +1,95 @@
+# Preferred name (Characters only)
+name: "Cara Kaissar"
+# Your GitHub repo root URL
+github_repo_root_url: "https://github.com/jarviscanada/jarvis_data_eng_demo"
+
+# Introduce yourself, your academic and professional background.
+# What excites you about the software industry and your passion. At least 80 words
+summary: "As a passionate software engineer with a strong academic background and professional experience, I hold a bachelor's degree in Computer Science and Software Engineering from UQAM. Currently, I am part of Jarvis' Technical Consulting (TIC) Program and have a solid foundation in both backend and front-end development, thanks to my experience with Astuce Media. My journey in the software industry is driven by a keen interest in innovative technologies and a desire to create efficient, scalable solutions. I am particularly passionate about leveraging technology to solve real-world problems and enhance user experiences, with a special enthusiasm for machine learning and data-driven solutions."
+
+# Group your skills by level.
+# Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
+skills:
+  proficient:
+    - Java
+    - Linux/Bash
+    - RDBMS/SQL
+    - Agile/Scrum
+    - Git
+  competent:
+    - Python
+    - JavaScript
+    - HTML/CSS
+    - Docker
+    - RESTful APIs
+    - Data Analysis
+    - Data Modeling
+    - Database Normalization (1NF, 2NF, 3NF)
+    - SQL Joins and Subqueries
+    - SQL Aggregation Functions
+  familiar:
+    - Pandas/Numpy
+    - Scikit-Learn
+    - "Machine Learning : Supervised Learning, Unsupervised Learning"
+    - Cloud Computing (AWS/GCP)
+    - Data Visualization (Matplotlib/Seaborn)
+
+# List of Jarvis projects
+jarvis_projects:
+  - name: "Cluster Monitor"
+    git_url: "/linux_sql"
+    description: "Developed a comprehensive cluster monitoring tool using Bash and SQL to manage and analyze system performance metrics. Implemented data collection scripts to capture CPU, memory, and disk usage across multiple Linux servers. Utilized PostgreSQL to store and query collected data, providing real-time insights and historical trends. Created automated alerting mechanisms for critical thresholds, ensuring proactive system maintenance. Leveraged crontab for scheduled data collection and reporting, enhancing the tool's reliability and efficiency."
+  - name: "RDBMS and SQL"
+    git_url: "/rdbms_sql"
+    description: "Developed and managed relational databases using PostgreSQL. Acquired skills in CRUD operations, data modeling, and normalization/denormalization principles. Designed complex SQL queries for data manipulation and extraction. Implemented joins, subqueries, and aggregations to handle data relationships and perform advanced analysis. Learned key concepts such as entity relationships, primary and foreign keys, and normalization forms (1NF, 2NF, 3NF). Utilized tools and resources such as pgexercises and LinkedIn Learning for practical exercises and theoretical understanding."
+
+
+# List of personal or academic projects
+# Feel free to add more projects
+highlighted_projects:
+  - name: "Assistant for Serial Histology of Mouse Brains (SBH-Assistant)"
+    git_url: "https://gitlab.info.uqam.ca/lefebvr_joel/inm5151-a21-sbh-assitant"
+    description: "Collaborated with a team of three to develop an assistant software for serial histology of mouse brains using OCT. My primary responsibility was building the API and backend application that manages the database and synchronizes services. This tool aids users in planning serial histology experiments, assists during imaging sessions, and documents experiments. It integrates the Allen Mouse Brain atlas and supports 2D-3D image registration, graphical visualization of reference data, regions of interest, and slices added during the experiments." # List of professional experience
+# The job description allows hiring managers to understand your job and the technologies you used (e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+# The description must be more than 25 words. If your experience is not software related, please focus on soft skills and achievements (e.g. team collaboration, problem-solving, improvements, communication).
+professional_experience:
+  - title: "Technical Consultant - Developer Role"
+    company: "Jarvis"
+    duration: "June 2024-present"
+    description: "Designed and implemented robust software solutions, focusing on backend development using Java and SQL. Collaborated with cross-functional teams to develop and deploy scalable applications. Utilized Agile methodologies, specifically Scrum, to ensure timely delivery of features and enhancements. Developed a cluster monitoring tool to track and analyze system performance metrics, employing Bash scripting and PostgreSQL. Leveraged Gitflow for efficient version control and collaborative development."
+
+  - title: "Junior Software Engineer (Promoted From Intern)"
+    company: "AstuceMedia"
+    duration: "May 2023 - May 2024"
+    description: "Developed web applications using React and Node.js. Built and optimized backend services with Node.js and Express. Implemented RESTful APIs for frontend-backend communication. Managed data using MongoDB and MySQL. Integrated front-end and back-end technologies effectively. Applied design patterns like Singleton and Observer in Angular. Integrated REST APIs with Angular applications. Collaborated with teams to design and launch features. Conducted performance testing and debugging."
+
+# List of education
+education:
+  - school_name: "UNIVERSITÉ DU QUÉBEC À MONTRÉAL (UQAM)"
+    duration: "2019 - 2024"
+    degree: "Bachelor of Science in Computer Science and Software Engineering"
+    department: "Computer Science and Software Engineering"
+    awards_achievements:
+  - school_name: "ÉCOLE FRANÇAISE INTERNATIONALE DE RIYADH"
+    duration: "2002 - 2017"
+    degree: "French Baccalauréat, Série S (Scientifique)"
+    department: "Science"
+    awards_achievements:
+
+# Optional section
+others:
+  # category
+  # - title: "Certificates"
+  #   list of items
+  #   bullets:
+  #     - "Udacity Machine Learning (2019)"
+  # - title: "Awards"
+  #   bullets:
+  #     - "Winner"
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Basketball"
+      - "Tennis"
+      - "Gym / Pilates / Yoga"
+      - "Spending Quality Time with My Family"
+      - "History Books / Documentaries"
