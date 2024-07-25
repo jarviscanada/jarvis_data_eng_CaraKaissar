@@ -19,27 +19,9 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_demo](http
 
 **RDBMS and SQL** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/rdbms_sql)]: Developed and managed relational databases using PostgreSQL. Acquired skills in CRUD operations, data modeling, and normalization/denormalization principles. Designed complex SQL queries for data manipulation and extraction. Implemented joins, subqueries, and aggregations to handle data relationships and perform advanced analysis. Learned key concepts such as entity relationships, primary and foreign keys, and normalization forms (1NF, 2NF, 3NF). Utilized tools and resources such as pgexercises and LinkedIn Learning for practical exercises and theoretical understanding.
 
-**Core Java Apps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/core_java)]:
-      
-  - Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
-  - JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
-  - Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
-
-**Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/springboot)]: Not Started
-
-**Python Data Analytics** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/python_data_analytics)]: Not Started
-
-**Hadoop** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/hadoop)]: Not Started
-
-**Spark** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/spark)]: Not Started
-
-**Cloud/DevOps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/cloud_devops)]: Not Started
-
 
 ## Highlighted Projects
-**Web app for restaurant** [[GitHub](https://github.com/jarviscanada/jarvis_profile_builder)]: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
-
-**Machine Learning**: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
+**Assistant for Serial Histology of Mouse Brains (SBH-Assistant)** [[GitHub](https://gitlab.info.uqam.ca/lefebvr_joel/inm5151-a21-sbh-assitant)]: Collaborated with a team of three to develop an assistant software for serial histology of mouse brains using OCT. My primary responsibility was building the API and backend application that manages the database and synchronizes services. This tool aids users in planning serial histology experiments, assists during imaging sessions, and documents experiments. It integrates the Allen Mouse Brain atlas and supports 2D-3D image registration, graphical visualization of reference data, regions of interest, and slices added during the experiments.
 
 
 ## Professional Experiences
