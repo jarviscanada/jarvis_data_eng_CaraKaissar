@@ -42,7 +42,9 @@ jarvis_projects:
   - name: "RDBMS and SQL"
     git_url: "/rdbms_sql"
     description: "Developed and managed relational databases using PostgreSQL. Acquired skills in CRUD operations, data modeling, and normalization/denormalization principles. Designed complex SQL queries for data manipulation and extraction. Implemented joins, subqueries, and aggregations to handle data relationships and perform advanced analysis. Learned key concepts such as entity relationships, primary and foreign keys, and normalization forms (1NF, 2NF, 3NF). Utilized tools and resources such as pgexercises and LinkedIn Learning for practical exercises and theoretical understanding."
-
+  - name: "Java Grep"
+    git_url: "/java_grep"
+    description: "Implemented a Java-based grep application for text pattern searching within files. The project involved creating a basic grep functionality and then re-implementing it using Java 8 Lambda and Stream APIs for better memory efficiency and performance. The app is capable of processing large files efficiently and was containerized using Docker for consistent deployment across various environments."
 
 # List of personal or academic projects
 # Feel free to add more projects
@@ -91,5 +93,5 @@ others:
       - "Basketball"
       - "Tennis"
       - "Gym / Pilates / Yoga"
-      - "Spending Quality Time with My Family"
+      - "Spending Quality Time With My Family & Friends"
       - "History Books / Documentaries"
