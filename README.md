@@ -19,6 +19,8 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_demo](http
 
 **RDBMS and SQL** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/rdbms_sql)]: Developed and managed relational databases using PostgreSQL. Acquired skills in CRUD operations, data modeling, and normalization/denormalization principles. Designed complex SQL queries for data manipulation and extraction. Implemented joins, subqueries, and aggregations to handle data relationships and perform advanced analysis. Learned key concepts such as entity relationships, primary and foreign keys, and normalization forms (1NF, 2NF, 3NF). Utilized tools and resources such as pgexercises and LinkedIn Learning for practical exercises and theoretical understanding.
 
+**Java Grep** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_demo/tree/master/java_grep)]: Implemented a Java-based grep application for text pattern searching within files. The project involved creating a basic grep functionality and then re-implementing it using Java 8 Lambda and Stream APIs for better memory efficiency and performance. The app is capable of processing large files efficiently and was containerized using Docker for consistent deployment across various environments.
+
 
 ## Highlighted Projects
 **Assistant for Serial Histology of Mouse Brains (SBH-Assistant)** [[GitHub](https://gitlab.info.uqam.ca/lefebvr_joel/inm5151-a21-sbh-assitant)]: Collaborated with a team of three to develop an assistant software for serial histology of mouse brains using OCT. My primary responsibility was building the API and backend application that manages the database and synchronizes services. This tool aids users in planning serial histology experiments, assists during imaging sessions, and documents experiments. It integrates the Allen Mouse Brain atlas and supports 2D-3D image registration, graphical visualization of reference data, regions of interest, and slices added during the experiments.
@@ -41,5 +43,5 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_demo](http
 - Basketball
 - Tennis
 - Gym / Pilates / Yoga
-- Spending Quality Time with My Family
+- Spending Quality Time With My Family & Friends
 - History Books / Documentaries
