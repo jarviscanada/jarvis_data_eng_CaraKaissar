@@ -1,4 +1,4 @@
-package ca.jrvs.apps.stockquote.dao;
+package ca.jrvs.apps.stockquote.dao.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

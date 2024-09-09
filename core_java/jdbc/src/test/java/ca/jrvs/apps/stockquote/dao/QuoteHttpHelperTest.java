@@ -1,13 +1,14 @@
 package ca.jrvs.apps.stockquote.dao;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import ca.jrvs.apps.stockquote.dao.models.Quote;
 import okhttp3.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -66,11 +67,19 @@ public class QuoteHttpHelperTest {
         assertEquals(144.00, result.getLow(), 0.01);
         assertEquals(148.00, result.getPrice(), 0.01);
         assertEquals(500000, result.getVolume());
-        assertEquals("2024-08-27", result.getLatestTradingDay());
+
+        // Use UTC timezone for date formatting
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC")); // Force UTC timezone
+        String formattedDate = dateFormat.format(result.getLatestTradingDay());
+        assertEquals("2024-08-27", formattedDate);  // Compare formatted date string
+
         assertEquals(147.00, result.getPreviousClose(), 0.01);
         assertEquals(1.00, result.getChange(), 0.01);
         assertEquals("0.68%", result.getChangePercent());
     }
+
+
 
     @Test(expected = IllegalArgumentException.class)
     public void testFetchQuoteInfoInvalidSymbol() {

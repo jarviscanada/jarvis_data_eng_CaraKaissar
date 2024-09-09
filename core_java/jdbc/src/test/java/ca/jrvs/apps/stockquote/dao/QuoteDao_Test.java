@@ -1,4 +1,5 @@
 package ca.jrvs.apps.stockquote.dao;
+import ca.jrvs.apps.stockquote.dao.models.Quote;
 import org.junit.*;
 import java.sql.*;
 import java.util.Optional;
@@ -33,12 +34,14 @@ public class QuoteDao_Test {
 
         // Clean up the database before each test
         try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DELETE FROM position");
             stmt.executeUpdate("DELETE FROM quote");
         } catch (SQLException e) {
-            System.err.println("Error during setup: Unable to clear the 'quote' table. " + e.getMessage());
+            System.err.println("Error during setup: Unable to clear the 'quote' or 'position' table. " + e.getMessage());
             throw e;
         }
     }
+
 
     @Test
     public void testSave() {
@@ -171,7 +174,7 @@ public class QuoteDao_Test {
     }
 
     @Test
-    public void testDeleteAll() {
+    public void testDeleteAll() throws SQLException {
         // Setup initial data
         Quote quote1 = new Quote();
         quote1.setTicker("AAPL");
