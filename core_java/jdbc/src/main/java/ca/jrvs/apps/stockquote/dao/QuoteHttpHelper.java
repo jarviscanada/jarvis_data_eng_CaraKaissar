@@ -1,5 +1,6 @@
 package ca.jrvs.apps.stockquote.dao;
 
+import ca.jrvs.apps.stockquote.dao.models.Quote;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;

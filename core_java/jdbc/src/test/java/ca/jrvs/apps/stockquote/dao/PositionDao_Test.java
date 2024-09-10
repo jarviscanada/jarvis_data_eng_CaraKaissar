@@ -1,5 +1,7 @@
 package ca.jrvs.apps.stockquote.dao;
 
+import ca.jrvs.apps.stockquote.dao.models.Quote;
+import ca.jrvs.apps.stockquote.dao.models.Position;
 import org.junit.*;
 import java.sql.*;
 import java.util.Optional;

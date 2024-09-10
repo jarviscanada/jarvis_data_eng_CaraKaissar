@@ -1,5 +1,7 @@
 package ca.jrvs.apps.stockquote.dao;
 
+import ca.jrvs.apps.stockquote.dao.models.Quote;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -118,10 +120,35 @@ public class QuoteDao implements CrudDao<Quote, String> {
 
     @Override
     public void deleteAll() {
-        try (Statement stmt = connection.createStatement()) {
-            stmt.executeUpdate(DELETE_ALL);
+        try {
+            connection.setAutoCommit(false); // Start transaction
+
+            // First delete all positions that reference quotes
+            try (Statement stmt = connection.createStatement()) {
+                stmt.executeUpdate("DELETE FROM position");
+            }
+
+            // Then delete all quotes
+            try (Statement stmt = connection.createStatement()) {
+                stmt.executeUpdate("DELETE FROM quote");
+            }
+
+            connection.commit(); // Commit transaction
+
         } catch (SQLException e) {
+            try {
+                connection.rollback(); // Rollback on error
+            } catch (SQLException rollbackEx) {
+                throw new RuntimeException("Error during transaction rollback: " + rollbackEx.getMessage(), rollbackEx);
+            }
             throw new RuntimeException("Error deleting all quotes: " + e.getMessage(), e);
+        } finally {
+            try {
+                connection.setAutoCommit(true); // Restore auto-commit
+            } catch (SQLException e) {
+                throw new RuntimeException("Error restoring auto-commit mode: " + e.getMessage(), e);
+            }
         }
     }
+
 }

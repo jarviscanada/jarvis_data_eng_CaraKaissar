@@ -1,5 +1,7 @@
 package ca.jrvs.apps.stockquote.dao;
 
+import ca.jrvs.apps.stockquote.dao.models.Position;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,10 @@ public class PositionDao implements CrudDao<Position, String> {
 
     @Override
     public Position save(Position position) throws IllegalArgumentException {
-        String sql = "INSERT INTO position (symbol, number_of_shares, value_paid) VALUES (?, ?, ?) ";
+        String sql = "INSERT INTO position (symbol, number_of_shares, value_paid) " +
+                "VALUES (?, ?, ?) " +
+                "ON CONFLICT (symbol) DO UPDATE " +
+                "SET number_of_shares = EXCLUDED.number_of_shares, value_paid = EXCLUDED.value_paid";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, position.getTicker());
@@ -23,11 +28,10 @@ public class PositionDao implements CrudDao<Position, String> {
             ps.setDouble(3, position.getValuePaid());
 
             ps.executeUpdate();
+            return position;
         } catch (SQLException e) {
             throw new IllegalArgumentException("Error saving position: " + e.getMessage(), e);
         }
-
-        return position;
     }
 
     @Override
