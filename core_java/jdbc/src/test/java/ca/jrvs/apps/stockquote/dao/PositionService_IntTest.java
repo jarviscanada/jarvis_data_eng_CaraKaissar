@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -17,11 +18,16 @@ public class PositionService_IntTest {
     @Before
     public void setUp() throws SQLException {
         // Initialize the real DAO and service
-        positionDao = new PositionDao(); // Ensure this connects to the correct PostgreSQL instance
+        String dbUrl = "jdbc:postgresql://localhost:5432/stock_quote";
+        String dbUser = "postgres";
+        String dbPassword = "newpassword";
+        DatabaseConnection dbConnection = new DatabaseConnection(dbUrl, dbUser, dbPassword); 
+
+        Connection connection = dbConnection.getConnection();
+        positionDao = new PositionDao(connection); 
         positionService = new PositionService(positionDao);
 
-        // Clean up the database before each test
-        positionDao.deleteAll(); // Make sure the database is in a clean state
+        positionDao.deleteAll(); 
     }
 
     @Test

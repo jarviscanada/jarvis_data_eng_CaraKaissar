@@ -7,15 +7,20 @@ import java.util.Properties;
 
 public class DatabaseConnection {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/stock_quote";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "newpassword";
+    private String dbUrl;
+    private String dbUser;
+    private String dbPassword;
 
-    public static Connection getConnection() throws SQLException {
+    public DatabaseConnection(String dbUrl, String dbUser, String dbPassword) {
+        this.dbUrl = dbUrl;
+        this.dbUser = dbUser;
+        this.dbPassword = dbPassword;
+    }
+
+    public Connection getConnection() throws SQLException {
         Properties properties = new Properties();
-        properties.setProperty("user", USER);
-        properties.setProperty("password", PASSWORD);
-
-        return DriverManager.getConnection(URL, properties);
+        properties.setProperty("user", dbUser);
+        properties.setProperty("password", dbPassword);
+        return DriverManager.getConnection(dbUrl, properties);
     }
 }

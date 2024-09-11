@@ -11,8 +11,8 @@ public class PositionDao implements CrudDao<Position, String> {
 
     private Connection connection;
 
-    public PositionDao() throws SQLException {
-        this.connection = DatabaseConnection.getConnection();
+    public PositionDao(Connection connection) throws SQLException {
+        this.connection =connection;
     }
 
     @Override

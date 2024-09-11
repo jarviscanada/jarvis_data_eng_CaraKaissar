@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -19,12 +20,16 @@ public class QuoteService_IntTest {
 
     @Before
     public void setUp() throws SQLException {
-        quoteDao = new QuoteDao();
-        PositionDao positionDao = new PositionDao(); // Add this
+        String dbUrl = "jdbc:postgresql://localhost:5432/stock_quote";
+        String dbUser = "postgres";
+        String dbPassword = "newpassword";
+        DatabaseConnection dbConnec = new DatabaseConnection(dbUrl, dbUser, dbPassword);
+        Connection connection = dbConnec.getConnection();
+        quoteDao = new QuoteDao(connection);
+        PositionDao positionDao = new PositionDao(connection);
 
-        // Clean the database by deleting all positions first, then quotes
-        positionDao.deleteAll(); // Clean all positions
-        quoteDao.deleteAll(); // Clean all quotes
+        positionDao.deleteAll();
+        quoteDao.deleteAll();
 
         mockHttpHelper = mock(QuoteHttpHelper.class);
         quoteService = new QuoteService(quoteDao, mockHttpHelper);

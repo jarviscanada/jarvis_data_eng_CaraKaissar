@@ -33,7 +33,8 @@ public class QuoteHttpHelperTest {
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        quoteHttpHelper = new QuoteHttpHelper();
+
+        quoteHttpHelper = new QuoteHttpHelper("70e344c139msh8b96a0b085f24bfp1ae4c4jsn8a14887b51c5");
         quoteHttpHelper.client = mockClient;
     }
 

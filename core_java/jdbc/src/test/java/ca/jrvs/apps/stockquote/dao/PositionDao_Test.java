@@ -16,10 +16,14 @@ public class PositionDao_Test {
 
     @BeforeClass
     public static void setUpClass() throws SQLException {
-        // Initialize connection using DatabaseConnection
-        connection = DatabaseConnection.getConnection();
-        positionDao = new PositionDao();
-        quoteDao = new QuoteDao(); // Initialize QuoteDao for Quote operations
+        String dbUrl = "jdbc:postgresql://localhost:5432/stock_quote";
+        String dbUser = "postgres";
+        String dbPassword = "newpassword";
+        DatabaseConnection dbConnection = new DatabaseConnection(dbUrl, dbUser, dbPassword); // Initialize using constructor
+
+        connection = dbConnection.getConnection();
+        positionDao = new PositionDao(connection);
+        quoteDao = new QuoteDao(connection); // Initialize QuoteDao for Quote operations
     }
 
     @Before

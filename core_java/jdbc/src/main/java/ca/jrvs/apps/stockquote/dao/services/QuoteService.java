@@ -37,4 +37,13 @@ public class QuoteService {
 
         return Optional.of(quote);
     }
+
+    public void saveQuote(Quote quote) {
+        dao.save(quote);
+    }
+
+    public boolean quoteExists(String symbol) {
+        return dao.findById(symbol).isPresent();  // Check if the quote exists in the database
+    }
+
 }

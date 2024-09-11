@@ -14,8 +14,13 @@ public class QuoteDao_Test {
     @BeforeClass
     public static void setUpClass() throws SQLException {
         // Initialize connection using DatabaseConnection
-        connection = DatabaseConnection.getConnection();
-        quoteDao = new QuoteDao();
+        String dbUrl = "jdbc:postgresql://localhost:5432/stock_quote";
+        String dbUser = "postgres";
+        String dbPassword = "newpassword";
+        DatabaseConnection dbConnection = new DatabaseConnection(dbUrl, dbUser, dbPassword);
+
+        connection = dbConnection.getConnection();
+        quoteDao = new QuoteDao(connection);
     }
 
     @AfterClass

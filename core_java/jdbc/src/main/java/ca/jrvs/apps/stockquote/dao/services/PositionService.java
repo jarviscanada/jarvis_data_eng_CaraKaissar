@@ -65,4 +65,16 @@ public class PositionService {
             throw new IllegalArgumentException("No position found for ticker: " + ticker);
         }
     }
+
+    /**
+     * Find position by its ticker symbol.
+     * @param ticker - Stock ticker symbol.
+     * @return The position if found, or an empty Optional if not.
+     */
+    public Optional<Position> findPositionById(String ticker) {
+        if (ticker == null || ticker.isEmpty()) {
+            throw new IllegalArgumentException("Invalid input: ticker is null or empty.");
+        }
+        return dao.findById(ticker);
+    }
 }

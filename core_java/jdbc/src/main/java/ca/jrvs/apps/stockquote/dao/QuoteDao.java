@@ -17,8 +17,8 @@ public class QuoteDao implements CrudDao<Quote, String> {
     private static final String DELETE = "DELETE FROM quote WHERE symbol = ?";
     private static final String DELETE_ALL = "DELETE FROM quote";
 
-    public QuoteDao() throws SQLException {
-        this.connection = DatabaseConnection.getConnection();
+    public QuoteDao(Connection connection) throws SQLException {
+        this.connection = connection;
     }
 
 
