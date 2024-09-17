@@ -60,7 +60,8 @@ public class QuoteHttpHelper {
             Quote quote = new Quote();
 
             // Map individual fields from the JSON response
-            quote.setTicker(quoteNode.get("01. symbol").asText());  // Set the ticker
+            quote.setTicker(quoteNode.get("01. symbol").asText());
+            quote.setSymbol(quoteNode.get("01. symbol").asText());
             quote.setOpen(quoteNode.get("02. open").asDouble());
             quote.setHigh(quoteNode.get("03. high").asDouble());
             quote.setLow(quoteNode.get("04. low").asDouble());

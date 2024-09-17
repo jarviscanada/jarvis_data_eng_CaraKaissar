@@ -12,10 +12,11 @@ import java.util.Properties;
 public class StockQuoteApplication {
 
     public static void main(String[] args) {
+        System.out.println(System.getProperty("java.class.path"));
         try {
             // Step 1: Parse properties.txt directly in the main method
             Properties properties = new Properties();
-            try (FileInputStream fis = new FileInputStream("core_java/jdbc/src/resources/properties.txt")) {
+            try (FileInputStream fis = new FileInputStream("core_java/jdbc/src/main/resources/properties.txt")) {
                 properties.load(fis);
             }
 

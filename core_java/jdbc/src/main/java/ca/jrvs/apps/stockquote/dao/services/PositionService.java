@@ -2,11 +2,15 @@ package ca.jrvs.apps.stockquote.dao.services;
 
 import ca.jrvs.apps.stockquote.dao.models.Position;
 import ca.jrvs.apps.stockquote.dao.PositionDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.Optional;
 
 public class PositionService {
 
+    private static final Logger logger = LoggerFactory.getLogger(PositionService.class);
     private PositionDao dao;
 
     // Constructor to inject PositionDao
@@ -24,7 +28,10 @@ public class PositionService {
      * @return The updated position in the database after processing the buy.
      */
     public Position buy(String ticker, int numberOfShares, double price) {
+        logger.info("Processing buy order for ticker: {}, shares: {}, price: {}", ticker, numberOfShares, price);
+
         if (ticker == null || ticker.isEmpty() || numberOfShares <= 0 || price <= 0) {
+            logger.error("Invalid input for buying position: ticker={}, shares={}, price={}", ticker, numberOfShares, price);
             throw new IllegalArgumentException("Invalid input for buying position.");
         }
 
@@ -32,6 +39,7 @@ public class PositionService {
         Position position;
         if (existingPositionOpt.isPresent()) {
             // Update existing position
+            logger.info("Updating existing position for ticker: {}", ticker);
             position = existingPositionOpt.get();
             int totalShares = position.getNumOfShares() + numberOfShares;
             double totalValue = position.getValuePaid() + (numberOfShares * price);
@@ -39,6 +47,7 @@ public class PositionService {
             position.setValuePaid(totalValue);
         } else {
             // Create new position
+            logger.info("Creating new position for ticker: {}", ticker);
             position = new Position();
             position.setTicker(ticker);
             position.setNumOfShares(numberOfShares);
@@ -46,6 +55,7 @@ public class PositionService {
         }
 
         dao.save(position);
+        logger.info("Position saved for ticker: {}", ticker);
         return position;
     }
 
@@ -54,14 +64,18 @@ public class PositionService {
      * @param ticker - Stock ticker symbol.
      */
     public void sell(String ticker) {
+        logger.info("Processing sell order for ticker: {}", ticker);
         if (ticker == null || ticker.isEmpty()) {
+            logger.error("Invalid input: ticker is null or empty.");
             throw new IllegalArgumentException("Invalid input: ticker is null or empty.");
         }
 
         // Delete the position from the database if it exists
         if (dao.findById(ticker).isPresent()) {
+            logger.info("Position deleted for ticker: {}", ticker);
             dao.deleteById(ticker);
         } else {
+            logger.error("No position found for ticker: {}", ticker);
             throw new IllegalArgumentException("No position found for ticker: " + ticker);
         }
     }
@@ -73,8 +87,10 @@ public class PositionService {
      */
     public Optional<Position> findPositionById(String ticker) {
         if (ticker == null || ticker.isEmpty()) {
+            logger.error("Invalid input: ticker is null or empty.");
             throw new IllegalArgumentException("Invalid input: ticker is null or empty.");
         }
+        logger.info("Finding position for ticker: {}", ticker);
         return dao.findById(ticker);
     }
 }

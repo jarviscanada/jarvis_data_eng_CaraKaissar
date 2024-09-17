@@ -112,4 +112,5 @@ public class QuoteHttpHelperTest {
 
         quoteHttpHelper.fetchQuoteInfo(symbol);
     }
+
 }

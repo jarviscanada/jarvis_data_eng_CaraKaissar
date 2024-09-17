@@ -3,9 +3,15 @@ package ca.jrvs.apps.stockquote.dao.controller;
 import ca.jrvs.apps.stockquote.dao.models.Position;
 import ca.jrvs.apps.stockquote.dao.services.PositionService;
 import ca.jrvs.apps.stockquote.dao.services.QuoteService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Scanner;
 
 public class StockQuoteController {
+
+    private static final Logger logger = LoggerFactory.getLogger(StockQuoteController.class);
+
 
     private QuoteService quoteService;
     private PositionService positionService;
@@ -23,6 +29,7 @@ public class StockQuoteController {
      * Loops indefinitely to allow the user to interact with the app.
      */
     public void initClient() {
+        logger.info("Starting Stock Quote and Position Manager");
         System.out.println("Welcome to the Stock Quote and Position Manager!");
         boolean running = true;
 
@@ -30,7 +37,7 @@ public class StockQuoteController {
         while (running) {
             printMenu();
             String choice = scanner.nextLine().trim().toLowerCase();
-
+            logger.info("Choice is {}", choice);
             switch (choice) {
                 case "1":
                     fetchQuoteInfo();
@@ -46,11 +53,13 @@ public class StockQuoteController {
                     break;
                 case "q":
                     running = false;
+                    logger.info("Stopping Stock Quote and Position Manager");
                     break;
                 default:
                     System.out.println("Invalid input. Please choose an option from the menu.");
             }
         }
+        logger.info("Application stopped.");
 
         System.out.println("Goodbye!");
     }
@@ -68,69 +77,79 @@ public class StockQuoteController {
 
     // Fetch stock quote information
     private void fetchQuoteInfo() {
+        logger.info("Fetching stock quote information.");
         System.out.print("Enter stock symbol: ");
         String symbol = scanner.nextLine().trim().toUpperCase();
 
         try {
             quoteService.fetchQuoteDataFromAPI(symbol).ifPresentOrElse(
                     quote -> {
+                        logger.info("Successfully fetched stock quote for symbol: {}", symbol);
                         System.out.println("Stock Information for " + symbol + ":");
                         System.out.println("Price: " + quote.getPrice());
+                        System.out.println("Volume: " + quote.getVolume());
                         System.out.println("Open: " + quote.getOpen());
                         System.out.println("High: " + quote.getHigh());
                         System.out.println("Low: " + quote.getLow());
-                        System.out.println("Volume: " + quote.getVolume());
                     },
-                    () -> System.out.println("Could not retrieve data for symbol: " + symbol)
+                    () -> {
+                        logger.warn("No data found for symbol: {}", symbol);
+                        System.out.println("Could not retrieve data for symbol: " + symbol);
+                    }
             );
         } catch (IllegalArgumentException e) {
+            logger.error("Error fetching quote for symbol: {}. Message: {}", symbol, e.getMessage());
             System.out.println("Error: " + e.getMessage());
         }
     }
 
-    // Handle buying a stock
+
     private void buyStock() {
+        logger.info("Processing stock purchase.");
         System.out.print("Enter stock symbol to buy: ");
         String symbol = scanner.nextLine().trim().toUpperCase();
 
         try {
-            // Check if the quote already exists in the quote table
             if (!quoteService.quoteExists(symbol)) {
-                // Fetch the stock quote and save it if it's not already present in the quote table
+                logger.info("Fetching and saving quote for symbol: {}", symbol);
                 quoteService.fetchQuoteDataFromAPI(symbol).ifPresentOrElse(
                         quote -> {
                             try {
-                                quoteService.saveQuote(quote);  // Save the quote to the quote table
+                                quoteService.saveQuote(quote);
+                                logger.info("Quote saved for symbol: {}", symbol);
                             } catch (Exception e) {
+                                logger.error("Error saving quote for symbol: {}", symbol, e);
                                 System.out.println("Error saving the quote: " + e.getMessage());
                             }
                         },
-                        () -> System.out.println("Could not retrieve data for symbol: " + symbol)
+                        () -> logger.warn("No data found for symbol: {}", symbol)
                 );
             }
 
-            // Ask for the number of shares and price
             System.out.print("Enter the number of shares: ");
             int shares = Integer.parseInt(scanner.nextLine().trim());
-
             System.out.print("Enter the price per share: ");
             double price = Double.parseDouble(scanner.nextLine().trim());
 
-            // Process the buy order
             Position updatedPosition = positionService.buy(symbol, shares, price);
+            logger.info("Position updated for symbol: {}", symbol);
             System.out.println("Updated Position for " + symbol + ":");
             System.out.println("Total Shares: " + updatedPosition.getNumOfShares());
             System.out.println("Total Value Paid: $" + updatedPosition.getValuePaid());
         } catch (NumberFormatException e) {
+            logger.error("Invalid input for shares or price.", e);
             System.out.println("Invalid input. Please enter valid numbers for shares and price.");
         } catch (IllegalArgumentException e) {
+            logger.error("Error buying stock for symbol: {}. Message: {}", symbol, e.getMessage());
             System.out.println("Error: " + e.getMessage());
         }
     }
 
 
-
-    // Handle selling a stock
+    /**
+     * Handle selling all shares of a given stock by prompting the user for the stock symbol.
+     * Deletes the stock position from the database.
+     */
     private void sellStock() {
         System.out.print("Enter stock symbol to sell: ");
         String symbol = scanner.nextLine().trim().toUpperCase();
@@ -139,11 +158,15 @@ public class StockQuoteController {
             positionService.sell(symbol);
             System.out.println("Sold all shares of " + symbol + ".");
         } catch (IllegalArgumentException e) {
+            logger.error("Error sellin stock for symbol: {}. Message: {}", symbol, e.getMessage());
             System.out.println("Error: " + e.getMessage());
         }
     }
 
-    // View current stock position
+    /**
+     * View the current stock position by prompting the user for the stock symbol.
+     * Displays the number of shares and total value paid.
+     */
     private void viewPosition() {
         System.out.print("Enter stock symbol to view position: ");
         String symbol = scanner.nextLine().trim().toUpperCase();
