@@ -33,6 +33,14 @@
       "description": "Developed and managed relational databases using PostgreSQL. Acquired skills in CRUD operations, data modeling, and normalization/denormalization principles. Designed complex SQL queries for data manipulation and extraction. Implemented joins, subqueries, and aggregations to handle data relationships and perform advanced analysis. Learned key concepts such as entity relationships, primary and foreign keys, and normalization forms (1NF, 2NF, 3NF). Utilized tools and resources such as pgexercises and LinkedIn Learning for practical exercises and theoretical understanding.",
       "git_url": "/rdbms_sql",
       "name": "RDBMS and SQL"
+    },
+    {
+      "description": [
+        "Grep App: Implemented a Java-based grep application for text pattern searching within files. The project involved creating a basic grep functionality and then re-implementing it using Java 8 Lambda and Stream APIs for better memory efficiency and performance. The app is capable of processing large files efficiently and was containerized using Docker for consistent deployment across various environments.",
+        "JDBC App: Developed a Java application that retrieves real-time stock data using an external API, processes the information, and stores it in a local database using JDBC. The project involved integrating a REST API to fetch stock data, error handling, and data persistence. The app was containerized using Docker for consistent deployment across different environments."
+      ],
+      "git_url": "/core_java",
+      "name": "Core Java Apps"
     }
   ],
   "name": "Cara Kaissar",
